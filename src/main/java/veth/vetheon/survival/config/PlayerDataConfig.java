@@ -7,6 +7,8 @@ import veth.vetheon.survival.data.PlayerData;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerDataConfig {
 
@@ -37,7 +39,9 @@ public class PlayerDataConfig {
 		File file = new File(playerDirectory, "converted.yml");
 		YamlConfiguration converted = YamlConfiguration.loadConfiguration(file);
 		converted.set("converted", conversions);
-		converted.options().header("This file is a placeholder, do not delete this file");
+		List<String> t = new ArrayList<String>();
+		t.add("This file is a placeholder, do not delete this file");
+		converted.options().setHeader(t);
 		saveFile(converted, file);
 	}
 

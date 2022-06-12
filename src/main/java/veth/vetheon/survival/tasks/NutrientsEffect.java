@@ -55,12 +55,12 @@ class NutrientsEffect extends BukkitRunnable {
 						case NORMAL:
 							//update from deprecated
 							if (SALTS_NORMAL != null) {
-								player.addPotionEffect(SALTS_NORMAL, true);
+								player.addPotionEffect(SALTS_NORMAL);
 							}
 							break;
 						case HARD:
 							if (SALTS_HARD != null) {
-								player.addPotionEffect(SALTS_HARD, true);
+								player.addPotionEffect(SALTS_HARD);
 							}
 							break;
 						default:
@@ -72,12 +72,12 @@ class NutrientsEffect extends BukkitRunnable {
 					switch (player.getWorld().getDifficulty()) {
 						case NORMAL:
 							if (PROTEIN_NORMAL != null) {
-								player.addPotionEffect(PROTEIN_NORMAL, true);
+								player.addPotionEffect(PROTEIN_NORMAL);
 							}
 							break;
 						case HARD:
 							if (PROTEIN_HARD != null) {
-								player.addPotionEffect(PROTEIN_HARD, true);
+								player.addPotionEffect(PROTEIN_HARD);
 							}
 							break;
 						default:

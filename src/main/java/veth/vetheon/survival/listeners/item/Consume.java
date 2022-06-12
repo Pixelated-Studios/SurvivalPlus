@@ -26,7 +26,6 @@ import veth.vetheon.survival.events.ThirstLevelChangeEvent;
 import veth.vetheon.survival.item.Item;
 import veth.vetheon.survival.managers.ItemManager;
 import veth.vetheon.survival.managers.PlayerManager;
-import veth.vetheon.survival.managers.StatusManager;
 import veth.vetheon.survival.util.Utils;
 
 import java.util.ArrayList;
@@ -192,7 +191,7 @@ public class Consume implements Listener {
             playerManager.getPlayerData(player).setThirst(thirst);
 
             int hunger = config.MECHANICS_HUNGER_RESPAWN_AMOUNT;
-            Bukkit.getScheduler().runTaskLater(plugin, () -> StatusManager.setHunger(player, hunger), 1);
+            Bukkit.getScheduler().runTaskLater(plugin, () -> playerData.setHunger(hunger), 1);
         }
     }
 
