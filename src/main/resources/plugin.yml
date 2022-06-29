@@ -2,11 +2,10 @@ name: SurvivalPlus
 main: veth.vetheon.survival.Survival
 authors: [FattyMieo, ShaneBee, VetheonGames, Pixelated Studios]
 version: '${project.version}'
-api-version: '1.18'
+api-version: '1.19'
 softdepend:
    - PlaceholderAPI
    - Multiverse-Core
-   - Oh_the_dungeons_youll_go
   ## - RealisticSeasons
 commands:
    reload-survival:
