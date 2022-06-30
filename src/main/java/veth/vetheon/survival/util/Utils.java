@@ -1,6 +1,9 @@
 package veth.vetheon.survival.util;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSet;;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -8,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.Metadatable;
+import org.w3c.dom.Text;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.managers.ItemManager;
@@ -661,15 +665,14 @@ public class Utils {
         return mat;
     }
 
-    /** Send a colored string to a Player
-     * <p>
-     *     Does not require ChatColor methods
-     * </p>
-     * @param player The player to send a colored string to
-     * @param msg The string to send including color codes
+	//TODO Fix usages as this now accepts TextComponent instead of String
+    /** Send a TextComponent (may be colored) to a Player
+     * @param player The player to send a colored TextComponent to
+     * @param msg The TextComponent to send including color codes
      */
-    public static void sendColoredMsg(CommandSender player, String msg) {
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', msg));
+    public static void sendColoredMsg(Player player, TextComponent msg) {
+		Audience audience = Survival.getInstance().getBukkitAudiences().player(player);
+        audience.sendMessage(msg);
     }
 
 	/** Send a colored console message
@@ -703,22 +706,15 @@ public class Utils {
 	    log(String.format(format, objects));
     }
 
+	//TODO Fix usages as this now outputs TextComponent instead of String
     /** Gets a colored string
-     * @param string The string including color codes/HEX color codes
-     * @return Returns a formatted string
+     * @param string The string including color codes
+     * @return Returns a TextComponent object
      */
-    public static String getColoredString(String string) {
-        if (isRunningMinecraft(1, 16)) {
-            Matcher matcher = HEX_PATTERN.matcher(string);
-            while (matcher.find()) {
-                final net.md_5.bungee.api.ChatColor hexColor = net.md_5.bungee.api.ChatColor.of(matcher.group().substring(1, matcher.group().length() - 1));
-                final String before = string.substring(0, matcher.start());
-                final String after = string.substring(matcher.end());
-                string = before + hexColor + after;
-                matcher = HEX_PATTERN.matcher(string);
-            }
-        }
-        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', string);
+    public static TextComponent getColoredString(String string) {
+        TextComponent txt = LegacyComponentSerializer.legacyAmpersand()
+				.deserialize(string);
+        return txt;
     }
 
     /** Spawn a particle at a location for all players

@@ -1,6 +1,7 @@
 package veth.vetheon.survival;
 
-import me.casperge.realisticseasons.api.SeasonsAPI;
+//import me.casperge.realisticseasons.api.SeasonsAPI;
+import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
 import org.bukkit.GameRule;
 import org.bukkit.Material;
@@ -69,6 +70,8 @@ public class Survival extends JavaPlugin implements Listener {
 	private String prefix;
 	private boolean loaded = true;
 	private boolean snowGenOption = true;
+
+	private BukkitAudiences adventure;
 
 	public void onEnable() {
 		instance = this;
@@ -180,6 +183,9 @@ public class Survival extends JavaPlugin implements Listener {
 			Utils.log("&7Custom recipes &aloaded");
 		}
 
+		// INITIALIZE AUDIENCES INSTANCE
+		this.adventure = BukkitAudiences.create(this);
+
 		// LOAD METRICS
 		int pluginId = 12789;
 		Metrics metrics = new Metrics(this);
@@ -229,6 +235,13 @@ public class Survival extends JavaPlugin implements Listener {
 				}
 			}
 		}
+
+		//Destroy Audiences instance
+		if (this.adventure != null) {
+			this.adventure.close();
+			this.adventure = null;
+		}
+
 		Utils.log("&eSuccessfully disabled");
 	}
 
@@ -283,9 +296,9 @@ public class Survival extends JavaPlugin implements Listener {
 	private void onServerReload(ServerLoadEvent e) {
 		if (e.getType() == ServerLoadEvent.LoadType.RELOAD) {
 			for (Player player : getServer().getOnlinePlayers()) {
-				Utils.sendColoredMsg(player, prefix + "&cDETECTED SERVER RELOAD");
-				Utils.sendColoredMsg(player, "    &6Recipes may have been impacted");
-				Utils.sendColoredMsg(player, "    &6Relog to update your recipes");
+				Utils.sendColoredMsg(player, Utils.getColoredString(prefix + "&cDETECTED SERVER RELOAD"));
+				Utils.sendColoredMsg(player, Utils.getColoredString("    &6Recipes may have been impacted"));
+				Utils.sendColoredMsg(player, Utils.getColoredString("    &6Relog to update your recipes"));
 			}
 			Utils.sendColoredConsoleMsg(prefix + "&cDETECTED SERVER RELOAD");
 			Utils.sendColoredConsoleMsg("    &7- &6Server reloads will impact recipes");
@@ -295,8 +308,7 @@ public class Survival extends JavaPlugin implements Listener {
 	}
 
 	private void registerCommands() {
-		TextComponent noPerm = LegacyComponentSerializer.legacyAmpersand()
-				.deserialize(Utils.getColoredString(prefix + lang.no_perm));
+		TextComponent noPerm = Utils.getColoredString(prefix + lang.no_perm);
 		getCommand("recipes").setExecutor(new Recipes());
 		getCommand("togglechat").setExecutor(new ToggleChat(this));
 		getCommand("togglechat").permissionMessage(noPerm);
@@ -445,5 +457,14 @@ public class Survival extends JavaPlugin implements Listener {
 
 	public PlayerDataConfig getPlayerDataConfig() {
 		return playerDataConfig;
+	}
+
+	/**
+	 * Get the plugin's current BukkitAudiences instance
+	 *
+	 * @return BukkitAudiences instance
+	 */
+	public BukkitAudiences getBukkitAudiences() {
+		return this.adventure;
 	}
 }

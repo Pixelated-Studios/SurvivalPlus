@@ -1,9 +1,9 @@
 package veth.vetheon.survival.listeners.server;
 
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -32,12 +32,12 @@ public class Guide implements Listener {
         int delay = config.WELCOME_GUIDE_DELAY;
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             Player player = e.getPlayer();
-            TextComponent msg = new TextComponent(Utils.getColoredString(lang.survival_guide_msg));
-            TextComponent link = new TextComponent(Utils.getColoredString(lang.survival_guide_click_msg));
-            link.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, lang.survival_guide_link));
-            link.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                    new ComponentBuilder(Utils.getColoredString(lang.survival_guide_hover_msg)).create()));
-            player.spigot().sendMessage(msg, link);
+            Audience playeraud = Audience.audience(player);
+            TextComponent msg = Utils.getColoredString(lang.survival_guide_msg);
+            TextComponent link = Utils.getColoredString(lang.survival_guide_click_msg);
+            link.clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, lang.survival_guide_link));
+            msg.append(link);
+            playeraud.sendMessage(msg);
         }, 20 * delay);
     }
 
