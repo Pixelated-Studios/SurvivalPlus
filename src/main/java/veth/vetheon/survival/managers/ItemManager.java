@@ -1,6 +1,7 @@
 package veth.vetheon.survival.managers;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
@@ -51,14 +52,14 @@ public class ItemManager {
         if (item == Item.HATCHET) {
             ItemStack i_hatchet = new ItemStack(Item.HATCHET.getMaterialType(), 1);
             ItemMeta hatchetMeta = i_hatchet.getItemMeta();
-            hatchetMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.hatchet));
+            hatchetMeta.displayName(Utils.getColoredString(lang.hatchet));
             hatchetMeta.setCustomModelData(Item.HATCHET.getModelData());
             i_hatchet.setItemMeta(hatchetMeta);
             return i_hatchet;
         } else if (item == Item.MATTOCK) {
             ItemStack i_mattock = new ItemStack(Item.MATTOCK.getMaterialType(), 1);
             ItemMeta mattockMeta = i_mattock.getItemMeta();
-            mattockMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.mattock));
+            mattockMeta.displayName(Utils.getColoredString(lang.mattock));
             mattockMeta.setCustomModelData(Item.MATTOCK.getModelData());
             i_mattock.setItemMeta(mattockMeta);
             return i_mattock;
@@ -80,17 +81,17 @@ public class ItemManager {
 
             i_shivMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
-            i_shivMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.shiv));
-            i_shivMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.poisoned_enemy),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + shiv_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + shiv_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_off_hand),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.poisoned_retain),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.reduce_50)
+            i_shivMeta.displayName(Utils.getColoredString(lang.shiv));
+            i_shivMeta.lore(Arrays.asList(
+                    Utils.getColoredString(lang.poisoned_enemy),
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_main_hand),
+                    Component.text(" " + shiv_spd + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_speed)),
+                    Component.text(" " + shiv_dmg + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_damage)),
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_off_hand).color(TextColor.color(0x808080)),
+                    Utils.getColoredString(lang.poisoned_retain),
+                    Utils.getColoredString(lang.reduce_50)
                     )
             );
             i_shiv.setItemMeta(i_shivMeta);
@@ -98,7 +99,7 @@ public class ItemManager {
         } else if (item == Item.HAMMER) {
             ItemStack i_hammer = new ItemStack(Item.HAMMER.getMaterialType(), 1);
             ItemMeta hammerMeta = i_hammer.getItemMeta();
-            hammerMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.hammer));
+            hammerMeta.displayName(Utils.getColoredString(lang.hammer));
             hammerMeta.setCustomModelData(Item.HAMMER.getModelData());
             i_hammer.setItemMeta(hammerMeta);
             return i_hammer;
@@ -116,16 +117,16 @@ public class ItemManager {
 
             i_gAxeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
-            i_gAxeMeta.setDisplayName(ChatColor.RESET + "" + Utils.getColoredString(lang.valkyrie_axe));
-            i_gAxeMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_unable_dual),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gAxe_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gAxe_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.RESET + Utils.getColoredString(lang.valkyrie_axe_spin),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.valkyrie_axe_cooldown),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.decrease_hunger_value)
+            i_gAxeMeta.displayName(Utils.getColoredString(lang.valkyrie_axe));
+            i_gAxeMeta.lore(Arrays.asList(
+                    Utils.getColoredString(lang.valkyrie_axe_unable_dual),
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_main_hand).color(TextColor.color(0x808080)),
+                    Component.text(" " + gAxe_spd + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_speed)),
+                    Component.text(" " + gAxe_dmg + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_damage)),
+                    Utils.getColoredString(lang.valkyrie_axe_spin),
+                    Component.text("  ").append(Utils.getColoredString(lang.valkyrie_axe_cooldown)),
+                    Component.text("  ").append(Utils.getColoredString(lang.decrease_hunger_value))
                     )
             );
             i_gAxeMeta.addEnchant(Enchantment.DURABILITY, 5, true);
@@ -149,13 +150,13 @@ public class ItemManager {
 
             i_gPickaxeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
-            i_gPickaxeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.quartz_breaker));
-            i_gPickaxeMeta.setLore(Arrays.asList(
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gPickaxe_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gPickaxe_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.haste)
+            i_gPickaxeMeta.displayName(Utils.getColoredString(lang.quartz_breaker));
+            i_gPickaxeMeta.lore(Arrays.asList(
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_main_hand).color(TextColor.color(0x808080)),
+                    Component.text(" " + gPickaxe_spd + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_speed)),
+                    Component.text(" " + gPickaxe_dmg + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_damage)),
+                    Component.text(" ").append(Utils.getColoredString(lang.haste)).color(TextColor.color(0x808080))
                     )
             );
             i_gPickaxeMeta.addEnchant(Enchantment.SILK_TOUCH, 1, false);
@@ -186,17 +187,17 @@ public class ItemManager {
 
             i_gSpadeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
-            i_gSpadeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.obsidian_mace));
-            i_gSpadeMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.cripple_hit),
-                    ChatColor.RESET + Utils.getColoredString(lang.drain_hit),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gSpade_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gSpade_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.exhausted_slow),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.expire_disarm),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.knockback_resistance)
+            i_gSpadeMeta.displayName(Utils.getColoredString(lang.obsidian_mace));
+            i_gSpadeMeta.lore(Arrays.asList(
+                    Utils.getColoredString(lang.cripple_hit),
+                    Utils.getColoredString(lang.drain_hit),
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_main_hand).color(TextColor.color(0x808080)),
+                    Component.text(" " + gSpade_spd + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_speed)),
+                    Component.text(" " + gSpade_dmg + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_damage)),
+                    Component.text(" ").append(Utils.getColoredString(lang.exhausted_slow)),
+                    Component.text(" ").append(Utils.getColoredString(lang.expire_disarm)),
+                    Component.text(" ").append(Utils.getColoredString(lang.knockback_resistance))
                     )
             );
             i_gSpadeMeta.addEnchant(Enchantment.KNOCKBACK, 3, true);
@@ -227,21 +228,21 @@ public class ItemManager {
 
             i_gHoeMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
-            i_gHoeMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade));
-            i_gHoeMeta.setLore(Arrays.asList(
-                    ChatColor.RESET + Utils.getColoredString(lang.ender_giant_blade_unable_duel),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gHoe_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gHoe_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.GRAY + " " + Utils.getColoredString(lang.right_click_sprinting),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.ender_giant_blade_charge),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.ender_giant_blade_cooldown),
-                    ChatColor.RESET + "  " + Utils.getColoredString(lang.decrease_hunger_value),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_off_hand),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.half_shield_resistance),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.reflecting_coming)
+            i_gHoeMeta.displayName(Utils.getColoredString(lang.ender_giant_blade));
+            i_gHoeMeta.lore(Arrays.asList(
+                    Utils.getColoredString(lang.ender_giant_blade_unable_duel),
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_main_hand).color(TextColor.color(0x808080)),
+                    Component.text(" " + gHoe_spd + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_speed)),
+                    Component.text(" " + gHoe_dmg + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_damage)),
+                    Component.text("  ").append(Utils.getColoredString(lang.right_click_sprinting).color(TextColor.color(0x808080))),
+                    Component.text("  ").append(Utils.getColoredString(lang.ender_giant_blade_charge)),
+                    Component.text("  ").append(Utils.getColoredString(lang.ender_giant_blade_cooldown)),
+                    Component.text("  ").append(Utils.getColoredString(lang.decrease_hunger_value)),
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_off_hand).color(TextColor.color(0x808080)),
+                    Component.text(" ").append(Utils.getColoredString(lang.half_shield_resistance)),
+                    Component.text(" ").append(Utils.getColoredString(lang.reflecting_coming))
                     )
             );
             i_gHoeMeta.addEnchant(Enchantment.DURABILITY, 5, true);
@@ -270,18 +271,18 @@ public class ItemManager {
 
             i_gSwordMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
 
-            i_gSwordMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.blaze_sword));
-            i_gSwordMeta.setLore(Arrays.asList(
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.in_main_hand),
-                    ChatColor.DARK_GREEN + " " + gSword_spd + " " + Utils.getColoredString(lang.attack_speed),
-                    ChatColor.DARK_GREEN + " " + gSword_dmg + " " + Utils.getColoredString(lang.attack_damage),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_fire_resistance),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_fiery),
-                    "",
-                    ChatColor.GRAY + Utils.getColoredString(lang.right_click_sneaking),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_spread_fire),
-                    ChatColor.RESET + " " + Utils.getColoredString(lang.blaze_sword_cost)
+            i_gSwordMeta.displayName(Utils.getColoredString(lang.blaze_sword));
+            i_gSwordMeta.lore(Arrays.asList(
+                    Component.text(""),
+                    Utils.getColoredString(lang.in_main_hand).color(TextColor.color(0x808080)),
+                    Component.text(" " + gSword_spd + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_speed)),
+                    Component.text(" " + gSword_dmg + " ").color(TextColor.color(0x00AA00)).append(Utils.getColoredString(lang.attack_damage)),
+                    Component.text(" ").append(Utils.getColoredString(lang.blaze_sword_fire_resistance)),
+                    Component.text(" ").append(Utils.getColoredString(lang.blaze_sword_fiery)),
+                    Component.text(""),
+                    Utils.getColoredString(lang.right_click_sneaking).color(TextColor.color(0x808080)),
+                    Component.text(" ").append(Utils.getColoredString(lang.blaze_sword_spread_fire)),
+                    Component.text(" ").append(Utils.getColoredString(lang.blaze_sword_cost))
                     )
             );
             i_gSwordMeta.addEnchant(Enchantment.FIRE_ASPECT, 2, true);
@@ -291,7 +292,7 @@ public class ItemManager {
         } else if (item == Item.WORKBENCH) {
             ItemStack workbench = new ItemStack(Item.WORKBENCH.getMaterialType(), 1);
             ItemMeta workbenchMeta = workbench.getItemMeta();
-            workbenchMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.workbench));
+            workbenchMeta.displayName(Utils.getColoredString(lang.workbench));
             workbench.setItemMeta(workbenchMeta);
             return workbench;
         } else if (item == Item.FIRESTRIKER) {
@@ -307,22 +308,26 @@ public class ItemManager {
 
             i_firestrikerMeta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, i_firestrikerSpeed);
             i_firestrikerMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            i_firestrikerMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.firestriker));
-            String lore = Utils.getColoredString(lang.firestriker_lore);
-            i_firestrikerMeta.setLore(Arrays.asList(lore.split("\\|\\|")));
+            i_firestrikerMeta.displayName(Utils.getColoredString(lang.firestriker));
+            String[] lorelist = lang.firestriker_lore.split("\\|\\|");
+            List<Component> lore = new ArrayList<>();
+            for (String l : lorelist) {
+                lore.add(Utils.getColoredString(l));
+            }
+            i_firestrikerMeta.lore(lore);
             i_firestriker.setItemMeta(i_firestrikerMeta);
             return i_firestriker;
         } else if (item == Item.FERMENTED_SKIN) {
             ItemStack i_fermentedSkin = new ItemStack(Item.FERMENTED_SKIN.getMaterialType(), 1);
             ItemMeta fermentedSkinMeta = i_fermentedSkin.getItemMeta();
-            fermentedSkinMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.fermented_skin));
+            fermentedSkinMeta.displayName(Utils.getColoredString(lang.fermented_skin));
             i_fermentedSkin.setItemMeta(fermentedSkinMeta);
             return i_fermentedSkin;
         } else if (item == Item.MEDIC_KIT) {
             ItemStack i_medicKit = new ItemStack(Item.MEDIC_KIT.getMaterialType(), 1);
             ItemMeta medicKitMeta = i_medicKit.getItemMeta();
             medicKitMeta.setCustomModelData(Item.MEDIC_KIT.getModelData());
-            medicKitMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.medical_kit));
+            medicKitMeta.displayName(Utils.getColoredString(lang.medical_kit));
             i_medicKit.setItemMeta(medicKitMeta);
             return i_medicKit;
         } else if (item == Item.REINFORCED_LEATHER_BOOTS) {
@@ -334,7 +339,7 @@ public class ItemManager {
                     "generic.armor", 2, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.FEET);
             i_leatherBootsMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, i_leatherBootsArmor);
 
-            i_leatherBootsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_boots));
+            i_leatherBootsMeta.displayName(Utils.getColoredString(lang.reinforced_boots));
 
             i_leatherBoots.setItemMeta(i_leatherBootsMeta);
             return i_leatherBoots;
@@ -343,7 +348,7 @@ public class ItemManager {
 
             ItemMeta leatherChestplateMeta = i_leatherChestplate.getItemMeta();
             leatherChestplateMeta.setCustomModelData(Item.REINFORCED_LEATHER_TUNIC.getModelData());
-            leatherChestplateMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_tunic));
+            leatherChestplateMeta.displayName(Utils.getColoredString(lang.reinforced_tunic));
 
             i_leatherChestplate.setItemMeta(leatherChestplateMeta);
             return i_leatherChestplate;
@@ -352,7 +357,7 @@ public class ItemManager {
 
             ItemMeta leatherLeggingsMeta = i_leatherLeggings.getItemMeta();
             leatherLeggingsMeta.setCustomModelData(Item.REINFORCED_LEATHER_TROUSERS.getModelData());
-            leatherLeggingsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_pants));
+            leatherLeggingsMeta.displayName(Utils.getColoredString(lang.reinforced_pants));
 
             i_leatherLeggings.setItemMeta(leatherLeggingsMeta);
             return i_leatherLeggings;
@@ -362,7 +367,7 @@ public class ItemManager {
 
             ItemMeta leatherHelmetMeta = i_leatherHelmet.getItemMeta();
             leatherHelmetMeta.setCustomModelData(Item.REINFORCED_LEATHER_HELMET.getModelData());
-            leatherHelmetMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.reinforced_hat));
+            leatherHelmetMeta.displayName(Utils.getColoredString(lang.reinforced_hat));
 
             i_leatherHelmet.setItemMeta(leatherHelmetMeta);
             return i_leatherHelmet;
@@ -378,7 +383,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.0125, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.FEET);
             i_goldBootsMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldBootsSpeed);
 
-            i_goldBootsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_sabatons));
+            i_goldBootsMeta.displayName(Utils.getColoredString(lang.golden_sabatons));
             i_goldBootsMeta.addEnchant(org.bukkit.enchantments.Enchantment.PROTECTION_FALL, 4, true);
 
             i_goldBoots.setItemMeta(i_goldBootsMeta);
@@ -395,7 +400,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.02, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.CHEST);
             i_goldChestplateMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldChestSpeed);
 
-            i_goldChestplateMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_guard));
+            i_goldChestplateMeta.displayName(Utils.getColoredString(lang.golden_guard));
             i_goldChestplateMeta.addEnchant(org.bukkit.enchantments.Enchantment.PROTECTION_EXPLOSIONS, 4, true);
 
             i_goldChestplate.setItemMeta(i_goldChestplateMeta);
@@ -412,7 +417,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.02, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.LEGS);
             i_goldLeggingsMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldLeggingsSpeed);
 
-            i_goldLeggingsMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_greaves));
+            i_goldLeggingsMeta.displayName(Utils.getColoredString(lang.golden_greaves));
             i_goldLeggingsMeta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 4, true);
 
             i_goldLeggings.setItemMeta(i_goldLeggingsMeta);
@@ -429,7 +434,7 @@ public class ItemManager {
                     "generic.movementSpeed", -0.0125, AttributeModifier.Operation.ADD_SCALAR, EquipmentSlot.HEAD);
             i_goldHelmetMeta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, i_goldHelmetSpeed);
 
-            i_goldHelmetMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.golden_crown));
+            i_goldHelmetMeta.displayName(Utils.getColoredString(lang.golden_crown));
             i_goldHelmetMeta.addEnchant(org.bukkit.enchantments.Enchantment.MENDING, 1, true);
 
             i_goldHelmet.setItemMeta(i_goldHelmetMeta);
@@ -550,9 +555,8 @@ public class ItemManager {
 
             ItemMeta recurveBowMeta = i_recurveBow.getItemMeta();
             recurveBowMeta.setCustomModelData(Item.RECURVE_BOW.getModelData());
-            recurveBowMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.recurved_bow));
-            recurveBowMeta.setLore(Collections.singletonList(ChatColor.RESET + "" + ChatColor.LIGHT_PURPLE +
-                    Utils.getColoredString(lang.recurved)));
+            recurveBowMeta.displayName(Utils.getColoredString(lang.recurved_bow));
+            recurveBowMeta.lore(Collections.singletonList(Utils.getColoredString(lang.recurved).color(TextColor.color(0xCBC3E3))));
             recurveBowMeta.addEnchant(Enchantment.ARROW_KNOCKBACK, 1, true);
             i_recurveBow.setItemMeta(recurveBowMeta);
             return i_recurveBow;
@@ -560,8 +564,8 @@ public class ItemManager {
             ItemStack recurveCrossbow = new ItemStack(Item.RECURVE_CROSSBOW.getMaterialType(), 1);
             ItemMeta recurveCrossbowMeta = recurveCrossbow.getItemMeta();
             recurveCrossbowMeta.setCustomModelData(Item.RECURVE_BOW.getModelData());
-            recurveCrossbowMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.recurved_crossbow));
-            recurveCrossbowMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.recurved)));
+            recurveCrossbowMeta.displayName(Utils.getColoredString(lang.recurved_crossbow));
+            recurveCrossbowMeta.lore(Collections.singletonList(Utils.getColoredString(lang.recurved)));
             recurveCrossbowMeta.addEnchant(Enchantment.ARROW_KNOCKBACK, 1, true);
             recurveCrossbow.setItemMeta(recurveCrossbowMeta);
             return recurveCrossbow;
@@ -571,8 +575,8 @@ public class ItemManager {
             dirtyMeta.setCustomModelData(Item.DIRTY_WATER.getModelData());
             ((PotionMeta) dirtyMeta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) dirtyMeta).setColor(Color.fromRGB(lang.dirty_water_color));
-            dirtyMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.dirty_water));
-            dirtyMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.dirty_water_lore)));
+            dirtyMeta.displayName(Utils.getColoredString(lang.dirty_water));
+            dirtyMeta.lore(Collections.singletonList(Utils.getColoredString(lang.dirty_water_lore)));
             dirtyMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             dirty_water.setItemMeta(dirtyMeta);
             return dirty_water;
@@ -582,8 +586,8 @@ public class ItemManager {
             cleanMeta.setCustomModelData(Item.CLEAN_WATER.getModelData());
             ((PotionMeta) cleanMeta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) cleanMeta).setColor(Color.fromRGB(lang.clean_water_color));
-            cleanMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.clean_water));
-            cleanMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.clean_water_lore)));
+            cleanMeta.displayName(Utils.getColoredString(lang.clean_water));
+            cleanMeta.lore(Collections.singletonList(Utils.getColoredString(lang.clean_water_lore)));
             cleanMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             clean_water.setItemMeta(cleanMeta);
             return clean_water;
@@ -593,8 +597,8 @@ public class ItemManager {
             meta.setCustomModelData(Item.PURIFIED_WATER.getModelData());
             ((PotionMeta) meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) meta).setColor(Color.fromRGB(lang.purified_water_color));
-            meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.purified_water));
-            meta.setLore(Collections.singletonList(Utils.getColoredString(lang.purified_water_lore)));
+            meta.displayName(Utils.getColoredString(lang.purified_water));
+            meta.lore(Collections.singletonList(Utils.getColoredString(lang.purified_water_lore)));
             meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             purified_water.setItemMeta(meta);
             return purified_water;
@@ -603,14 +607,19 @@ public class ItemManager {
             PotionMeta water_bowlMeta = ((PotionMeta) water_bowl.getItemMeta());
             water_bowlMeta.setBasePotionData(new PotionData(PotionType.WATER));
             water_bowlMeta.setCustomModelData(Item.WATER_BOWL.getModelData());
-            water_bowlMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.water_bowl));
+            water_bowlMeta.displayName(Utils.getColoredString(lang.water_bowl));
             water_bowl.setItemMeta(water_bowlMeta);
             return water_bowl;
         } else if (item == Item.CAMPFIRE) {
             ItemStack campfire = new ItemStack(Item.CAMPFIRE.getMaterialType());
             ItemMeta campfireMeta = campfire.getItemMeta();
-            campfireMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.campfire_name));
-            campfireMeta.setLore(Arrays.asList(Utils.getColoredString(lang.campfire_lore).split("\\|\\|")));
+            campfireMeta.displayName(Utils.getColoredString(lang.campfire_name));
+            String[] lorelist = lang.campfire_lore.split("\\|\\|");
+            List<Component> lore = new ArrayList<>();
+            for (String l : lorelist) {
+                lore.add(Utils.getColoredString(l));
+            }
+            campfireMeta.lore(lore);
             campfireMeta.setCustomModelData(Item.CAMPFIRE.getModelData());
             BlockData data = Material.CAMPFIRE.createBlockData();
             ((Campfire) data).setLit(false);
@@ -621,34 +630,34 @@ public class ItemManager {
             ItemStack stone_sickle = new ItemStack(Item.STONE_SICKLE.getMaterialType());
             ItemMeta stone_sickleMeta = stone_sickle.getItemMeta();
             stone_sickleMeta.setCustomModelData(Item.STONE_SICKLE.getModelData());
-            stone_sickleMeta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.stone_sickle));
+            stone_sickleMeta.displayName(Utils.getColoredString(lang.stone_sickle));
             stone_sickle.setItemMeta(stone_sickleMeta);
             return stone_sickle;
         } else if (item == Item.IRON_SICKLE) {
             ItemStack iron_sickle_new = new ItemStack(Item.IRON_SICKLE.getMaterialType());
             ItemMeta iron_sickle_new_meta = iron_sickle_new.getItemMeta();
             iron_sickle_new_meta.setCustomModelData(Item.IRON_SICKLE.getModelData());
-            iron_sickle_new_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.iron_sickle));
+            iron_sickle_new_meta.displayName(Utils.getColoredString(lang.iron_sickle));
             iron_sickle_new.setItemMeta(iron_sickle_new_meta);
             return iron_sickle_new;
         } else if (item == Item.FLINT_SICKLE) {
             ItemStack flint_sickle = new ItemStack(Item.FLINT_SICKLE.getMaterialType());
             ItemMeta flint_sickle_meta = flint_sickle.getItemMeta();
             flint_sickle_meta.setCustomModelData(Item.FLINT_SICKLE.getModelData());
-            flint_sickle_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.flint_sickle));
+            flint_sickle_meta.displayName(Utils.getColoredString(lang.flint_sickle));
             flint_sickle.setItemMeta(flint_sickle_meta);
             return flint_sickle;
         } else if (item == Item.DIAMOND_SICKLE) {
             ItemStack diamond_sickle = new ItemStack(Item.DIAMOND_SICKLE.getMaterialType());
             ItemMeta diamond_sickle_meta = diamond_sickle.getItemMeta();
             diamond_sickle_meta.setCustomModelData(Item.DIAMOND_SICKLE.getModelData());
-            diamond_sickle_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.diamond_sickle));
+            diamond_sickle_meta.displayName(Utils.getColoredString(lang.diamond_sickle));
             diamond_sickle.setItemMeta(diamond_sickle_meta);
             return diamond_sickle;
         } else if (item == Item.GRAPPLING_HOOK) {
             ItemStack grappling_hook = new ItemStack(Item.GRAPPLING_HOOK.getMaterialType());
             ItemMeta grappling_meta = grappling_hook.getItemMeta();
-            grappling_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.grappling_hook));
+            grappling_meta.displayName(Utils.getColoredString(lang.grappling_hook));
             grappling_meta.setCustomModelData(Item.GRAPPLING_HOOK.getModelData());
             grappling_hook.setItemMeta(grappling_meta);
             return grappling_hook;
@@ -658,7 +667,7 @@ public class ItemManager {
             coffee_meta.setCustomModelData(Item.COFFEE.getModelData());
             ((PotionMeta) coffee_meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) coffee_meta).setColor(Color.fromRGB(lang.coffee_color));
-            coffee_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.coffee_name));
+            coffee_meta.displayName(Utils.getColoredString(lang.coffee_name));
             coffee_meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             coffee.setItemMeta(coffee_meta);
             return coffee;
@@ -668,7 +677,7 @@ public class ItemManager {
             hot_milk_meta.setCustomModelData(Item.HOT_MILK.getModelData());
             ((PotionMeta) hot_milk_meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) hot_milk_meta).setColor(Color.fromRGB(lang.hot_milk_color));
-            hot_milk_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.hot_milk_name));
+            hot_milk_meta.displayName(Utils.getColoredString(lang.hot_milk_name));
             hot_milk_meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             hot_milk.setItemMeta(hot_milk_meta);
             return hot_milk;
@@ -678,7 +687,7 @@ public class ItemManager {
             cold_milk_meta.setCustomModelData(Item.COLD_MILK.getModelData());
             ((PotionMeta) cold_milk_meta).setBasePotionData(new PotionData(PotionType.WATER));
             ((PotionMeta) cold_milk_meta).setColor(Color.fromRGB(lang.cold_milk_color));
-            cold_milk_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.cold_milk_name));
+            cold_milk_meta.displayName(Utils.getColoredString(lang.cold_milk_name));
             cold_milk_meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
             cold_milk.setItemMeta(cold_milk_meta);
             return cold_milk;
@@ -686,24 +695,24 @@ public class ItemManager {
             ItemStack coffee_bean = new ItemStack(Item.COFFEE_BEAN.getMaterialType());
             ItemMeta coffee_bean_meta = coffee_bean.getItemMeta();
             coffee_bean_meta.setCustomModelData(Item.COFFEE_BEAN.getModelData());
-            coffee_bean_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.coffee_bean_name));
+            coffee_bean_meta.displayName(Utils.getColoredString(lang.coffee_bean_name));
             coffee_bean.setItemMeta(coffee_bean_meta);
             return coffee_bean;
         } else if (item == Item.BREEDING_EGG) {
             ItemStack breeding_egg = new ItemStack(Item.BREEDING_EGG.getMaterialType());
             ItemMeta breeding_egg_meta = breeding_egg.getItemMeta();
             breeding_egg_meta.setCustomModelData(Item.BREEDING_EGG.getModelData());
-            breeding_egg_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.breeding_egg_name));
+            breeding_egg_meta.displayName(Utils.getColoredString(lang.breeding_egg_name));
             breeding_egg.setItemMeta(breeding_egg_meta);
             return breeding_egg;
         } else if (item == Item.COMPASS) {
             ItemStack compass = new ItemStack(Item.COMPASS.getMaterialType());
             ItemMeta compass_meta = compass.getItemMeta();
-            List<String> compass_lore = new ArrayList<>();
+            List<Component> compass_lore = new ArrayList<>();
             for (int i = 0; i < lang.compass_lore.size(); i++) {
                 compass_lore.add(Utils.getColoredString(lang.compass_lore.get(i)));
             }
-            compass_meta.setLore(compass_lore);
+            compass_meta.lore(compass_lore);
             compass.setItemMeta(compass_meta);
             return compass;
         } else if (item == Item.PERSISTENT_TORCH) {
@@ -711,15 +720,15 @@ public class ItemManager {
             ItemStack persistent_torch = new ItemStack(Item.PERSISTENT_TORCH.getMaterialType());
             ItemMeta p_torch_meta = persistent_torch.getItemMeta();
             p_torch_meta.setCustomModelData(Item.PERSISTENT_TORCH.getModelData());
-            p_torch_meta.setLore(Collections.singletonList(ChatColor.AQUA + "Persistent"));
+            p_torch_meta.lore(Collections.singletonList(Component.text("Persistent").color(TextColor.color(0x00FFFF))));
             persistent_torch.setItemMeta(p_torch_meta);
             return persistent_torch;
         } else if (item == Item.BEEKEEPER_HELMET) {
             ItemStack beeHelmet = new ItemStack(Item.BEEKEEPER_HELMET.getMaterialType());
             ItemMeta bhMeta = beeHelmet.getItemMeta();
             bhMeta.setCustomModelData(Item.BEEKEEPER_HELMET.getModelData());
-            bhMeta.setDisplayName(Utils.getColoredString(lang.bee_helmet_name));
-            bhMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
+            bhMeta.displayName(Utils.getColoredString(lang.bee_helmet_name));
+            bhMeta.lore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) bhMeta).setColor(Color.WHITE);
             bhMeta.addItemFlags(ItemFlag.HIDE_DYE);
             beeHelmet.setItemMeta(bhMeta);
@@ -728,8 +737,8 @@ public class ItemManager {
             ItemStack beeChest = new ItemStack(Item.BEEKEEPER_CHESTPLATE.getMaterialType());
             ItemMeta bcMeta = beeChest.getItemMeta();
             bcMeta.setCustomModelData(Item.BEEKEEPER_CHESTPLATE.getModelData());
-            bcMeta.setDisplayName(Utils.getColoredString(lang.bee_chest_name));
-            bcMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
+            bcMeta.displayName(Utils.getColoredString(lang.bee_chest_name));
+            bcMeta.lore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) bcMeta).setColor(Color.WHITE);
             bcMeta.addItemFlags(ItemFlag.HIDE_DYE);
             beeChest.setItemMeta(bcMeta);
@@ -738,8 +747,8 @@ public class ItemManager {
             ItemStack beeLegs = new ItemStack(Item.BEEKEEPER_LEGGINGS.getMaterialType());
             ItemMeta blMeta = beeLegs.getItemMeta();
             blMeta.setCustomModelData(Item.BEEKEEPER_LEGGINGS.getModelData());
-            blMeta.setDisplayName(Utils.getColoredString(lang.bee_legs_name));
-            blMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
+            blMeta.displayName(Utils.getColoredString(lang.bee_legs_name));
+            blMeta.lore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) blMeta).setColor(Color.WHITE);
             blMeta.addItemFlags(ItemFlag.HIDE_DYE);
             beeLegs.setItemMeta(blMeta);
@@ -748,8 +757,8 @@ public class ItemManager {
             ItemStack beeBoots = new ItemStack(Item.BEEKEEPER_BOOTS.getMaterialType());
             ItemMeta bbMeta = beeBoots.getItemMeta();
             bbMeta.setCustomModelData(Item.BEEKEEPER_BOOTS.getModelData());
-            bbMeta.setDisplayName(Utils.getColoredString(lang.bee_boots_name));
-            bbMeta.setLore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
+            bbMeta.displayName(Utils.getColoredString(lang.bee_boots_name));
+            bbMeta.lore(Collections.singletonList(Utils.getColoredString(lang.bee_suit_lore)));
             ((LeatherArmorMeta) bbMeta).setColor(Color.WHITE);
             bbMeta.addItemFlags(ItemFlag.HIDE_DYE);
             beeBoots.setItemMeta(bbMeta);
@@ -759,7 +768,7 @@ public class ItemManager {
             SuspiciousStewMeta suspicious_meat_meta = ((SuspiciousStewMeta) suspicious_meat.getItemMeta());
             suspicious_meat_meta.setCustomModelData(Item.SUSPICIOUS_MEAT.getModelData());
             suspicious_meat_meta.addCustomEffect(getRandomPotionEffect(), false);
-            suspicious_meat_meta.setDisplayName(Utils.getColoredString(lang.suspicious_meat));
+            suspicious_meat_meta.displayName(Utils.getColoredString(lang.suspicious_meat));
             suspicious_meat.setItemMeta(suspicious_meat_meta);
             return suspicious_meat;
         } else if (item == Item.NETHERITE_HELMET) {
@@ -857,8 +866,8 @@ public class ItemManager {
                 ((LeatherArmorMeta) snow_boots_meta).setColor(Color.fromRGB(158, 201, 202));
             }
             snow_boots_meta.setCustomModelData(Item.SNOW_BOOTS.getModelData());
-            snow_boots_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.snow_boots_name));
-            snow_boots_meta.setLore(Collections.singletonList(Utils.getColoredString(lang.snow_boots_lore)));
+            snow_boots_meta.displayName(Utils.getColoredString(lang.snow_boots_name));
+            snow_boots_meta.lore(Collections.singletonList(Utils.getColoredString(lang.snow_boots_lore)));
             snow_boots.setItemMeta(snow_boots_meta);
 
             return snow_boots;
@@ -869,8 +878,8 @@ public class ItemManager {
                 ((LeatherArmorMeta) rain_boots_meta).setColor(Color.fromRGB(214, 231, 3));
             }
             rain_boots_meta.setCustomModelData(Item.RAIN_BOOTS.getModelData());
-            rain_boots_meta.setDisplayName(ChatColor.RESET + Utils.getColoredString(lang.rain_boots_name));
-            rain_boots_meta.setLore(Collections.singletonList(Utils.getColoredString(lang.rain_boots_lore)));
+            rain_boots_meta.displayName(Utils.getColoredString(lang.rain_boots_name));
+            rain_boots_meta.lore(Collections.singletonList(Utils.getColoredString(lang.rain_boots_lore)));
             rain_boots.setItemMeta(rain_boots_meta);
 
             return rain_boots;
