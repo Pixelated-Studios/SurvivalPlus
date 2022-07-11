@@ -1,17 +1,14 @@
 package veth.vetheon.survival.util;
 
 import com.google.common.collect.ImmutableSet;;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.*;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.Metadatable;
-import org.w3c.dom.Text;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.managers.ItemManager;
@@ -671,8 +668,8 @@ public class Utils {
      * @param msg The TextComponent to send including color codes
      */
     public static void sendColoredMsg(Player player, TextComponent msg) {
-		Audience audience = Survival.getInstance().getBukkitAudiences().player(player);
-        audience.sendMessage(msg);
+		//Audience audience = Survival.getInstance().getBukkitAudiences().player(player);
+        player.sendMessage(msg);
     }
 
 	/** Send a colored console message
@@ -716,6 +713,15 @@ public class Utils {
 				.deserialize(string);
         return txt;
     }
+
+	/** Gets a colored string
+	 * @param string The string including color codes
+	 * @return Returns a colored string
+	 * @deprecated Use getColoredString() if possible
+	 */
+	public static String getColoredStringLegacy(String string) {
+		return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', string);
+	}
 
     /** Spawn a particle at a location for all players
      * @param location The location to spawn a particle at
