@@ -35,16 +35,16 @@ public class Heal implements CommandExecutor {
             }
             Player healed = Bukkit.getPlayer(args[0]);
             if (healed == null) {
-                Utils.sendColoredMsg(sender, lang.cmd_player_not_online.replace("<player>", args[0]));
+                sender.sendMessage(Utils.getColoredString(lang.cmd_player_not_online.replace("<player>", args[0])));
                 return true;
             }
             heal(healed);
-            Utils.sendColoredMsg(sender, lang.cmd_heal_other.replace("<player>", args[0]));
-            Utils.sendColoredMsg(healed, lang.cmd_heal_by.replace("<player>", sender.getName()));
+            sender.sendMessage(Utils.getColoredString(lang.cmd_heal_other.replace("<player>", args[0])));
+            healed.sendMessage(Utils.getColoredString(lang.cmd_heal_by.replace("<player>", sender.getName())));
         } else {
             if (sender instanceof Player) {
                 heal(((Player) sender));
-                Utils.sendColoredMsg(sender, lang.cmd_heal_self);
+                sender.sendMessage(Utils.getColoredString(lang.cmd_heal_self));
             } else {
                 Utils.log("&cConsole can not heal itself!");
                 return true;

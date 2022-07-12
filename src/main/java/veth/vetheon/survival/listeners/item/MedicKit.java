@@ -1,5 +1,6 @@
 package veth.vetheon.survival.listeners.item;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -66,8 +67,8 @@ public class MedicKit implements Listener {
 								playerData.setStat(Stat.HEALING, 1);
 								healedData.setStat(Stat.HEALING, 1);
 								healed.teleport(playerManager.lookAt(healed.getLocation(), player.getLocation()));
-								player.sendMessage(Utils.getColoredString(lang.healing) + ChatColor.RESET + healed.getDisplayName() + Utils.getColoredString(lang.keep) + ChatColor.DARK_GREEN + Utils.getColoredString(lang.medical_kit) + Utils.getColoredString(lang.on_hand));
-								healed.sendMessage(Utils.getColoredString(lang.being_healed) + ChatColor.RESET + player.getDisplayName() + Utils.getColoredString(lang.stay_still));
+								player.sendMessage(Utils.getColoredString(lang.healing).append(healed.displayName()).append(Utils.getColoredString(lang.keep)).append(Utils.getColoredString(lang.medical_kit + lang.on_hand).color(TextColor.color(0x00AA00))));
+								healed.sendMessage(Utils.getColoredString(lang.being_healed).append(player.displayName()).append(Utils.getColoredString(lang.stay_still)));
 
 								playerData.setStat(Stat.HEAL_TIMES, 5);
 								final Runnable task = new Runnable() {
@@ -97,8 +98,8 @@ public class MedicKit implements Listener {
 												playerData.setStat(Stat.HEALING, 0);
 												healedData.setStat(Stat.HEALING, 0);
 
-												player.sendMessage(ChatColor.DARK_GREEN + Utils.getColoredString(lang.healing_complete));
-												healed.sendMessage(ChatColor.DARK_GREEN + Utils.getColoredString(lang.healing_complete));
+												player.sendMessage(Utils.getColoredString(lang.healing_complete).color(TextColor.color(0x00AA00)));
+												healed.sendMessage(Utils.getColoredString(lang.healing_complete).color(TextColor.color(0x00AA00)));
 
 												player.getInventory().removeItem(ItemManager.get(Item.MEDIC_KIT));
 											}
@@ -106,8 +107,8 @@ public class MedicKit implements Listener {
 											playerData.setStat(Stat.HEALING, 0);
 											healedData.setStat(Stat.HEALING, 0);
 
-											player.sendMessage(ChatColor.DARK_RED + Utils.getColoredString(lang.healing_interrupted));
-											healed.sendMessage(ChatColor.DARK_RED + Utils.getColoredString(lang.healing_interrupted));
+											player.sendMessage(Utils.getColoredString(lang.healing_interrupted).color(TextColor.color(0xAA0000)));
+											healed.sendMessage(Utils.getColoredString(lang.healing_interrupted).color(TextColor.color(0xAA0000)));
 
 											player.getInventory().removeItem(ItemManager.get(Item.MEDIC_KIT));
 										}
@@ -132,7 +133,7 @@ public class MedicKit implements Listener {
 				if (playerData.getStat(Stat.HEALING) <= 0) {
 					if (player.isSneaking()) {
 						playerData.setStat(Stat.HEALING, 1);
-						player.sendMessage(Utils.getColoredString(lang.healing_self) + Utils.getColoredString(lang.keep) + ChatColor.DARK_GREEN + Utils.getColoredString(lang.medical_kit) + Utils.getColoredString(lang.on_hand));
+						player.sendMessage(Utils.getColoredString(lang.healing_self+lang.keep).append(Utils.getColoredString(lang.medical_kit+lang.on_hand).color(TextColor.color(0x00AA00))));
 
 						playerData.setStat(Stat.HEAL_TIMES, 5);
 						final Runnable task = new Runnable() {
@@ -159,14 +160,14 @@ public class MedicKit implements Listener {
 									} else {
 										playerData.setStat(Stat.HEALING, 0);
 
-										player.sendMessage(ChatColor.DARK_GREEN + Utils.getColoredString(lang.healing_complete));
+										player.sendMessage(Utils.getColoredString(lang.healing_complete).color(TextColor.color(0x00AA00)));
 
 										player.getInventory().removeItem(ItemManager.get(Item.MEDIC_KIT));
 									}
 								} else {
 									playerData.setStat(Stat.HEALING, 0);
 
-									player.sendMessage(ChatColor.DARK_RED + Utils.getColoredString(lang.healing_interrupted));
+									player.sendMessage(Utils.getColoredString(lang.healing_interrupted).color(TextColor.color(0xAA0000)));
 
 									player.getInventory().removeItem(ItemManager.get(Item.MEDIC_KIT));
 								}

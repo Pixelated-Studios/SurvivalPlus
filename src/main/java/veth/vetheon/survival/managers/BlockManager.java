@@ -11,6 +11,7 @@ import org.bukkit.block.data.Lightable;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
@@ -80,7 +81,7 @@ public class BlockManager {
 			loaded = "&7data.yml &aloaded";
 		}
 		data = YamlConfiguration.loadConfiguration(data_file);
-		Utils.sendColoredMsg(sender, lang.prefix + loaded);
+		sender.sendMessage(Utils.getColoredString(lang.prefix + loaded));
 	}
 
 	/**

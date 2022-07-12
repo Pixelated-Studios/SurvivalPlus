@@ -36,12 +36,12 @@ public class PlayerDataCmd implements TabExecutor {
         }
         Player player = Bukkit.getPlayer(args[0]);
         if (player == null) {
-            Utils.sendColoredMsg(sender, "&cPlayer &b" + args[0] + "&c is not online!");
+            sender.sendMessage(Utils.getColoredString("&cPlayer &b" + args[0] + "&c is not online!"));
             return true;
         }
         PlayerData playerData = playerManager.getPlayerData(player);
         if (playerData == null) {
-            Utils.sendColoredMsg(sender, "&cInvalid player data for &b" + args[0]);
+            sender.sendMessage(Utils.getColoredString("&cInvalid player data for &b" + args[0]));
             return true;
         }
 

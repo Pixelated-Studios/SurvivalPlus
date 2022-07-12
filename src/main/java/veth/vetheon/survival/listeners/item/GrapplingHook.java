@@ -2,12 +2,12 @@ package veth.vetheon.survival.listeners.item;
 
 import java.util.List;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.inventory.ItemStack;
 import veth.vetheon.survival.managers.ItemManager;
 import veth.vetheon.survival.item.Item;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -109,18 +109,18 @@ public class GrapplingHook implements Listener {
 			} else {
 				event.setCancelled(true);
 				if (ItemManager.compare(mainHand, Item.GRAPPLING_HOOK))
-					p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.grappling_off_hand));
+					p.sendMessage(Utils.getColoredString(lang.grappling_off_hand).color(TextColor.color(0xFF5555)));
 				else
-					p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.fishing_off_hand));
+				p.sendMessage(Utils.getColoredString(lang.fishing_off_hand).color(TextColor.color(0xFF5555)));
 				p.updateInventory();
 			}
 		} else {
 			event.setCancelled(true);
 			if (ItemManager.compare(offHand, Item.GRAPPLING_HOOK))
-				p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.grappling_main_hand));
+				p.sendMessage(Utils.getColoredString(lang.grappling_main_hand).color(TextColor.color(0xFF5555)));
 			else
-				p.sendMessage(ChatColor.RED + Utils.getColoredString(lang.fishing_main_hand));
-			p.updateInventory();
+				p.sendMessage(Utils.getColoredString(lang.fishing_main_hand).color(TextColor.color(0xFF5555)));
+				p.updateInventory();
 		}
 	}
 

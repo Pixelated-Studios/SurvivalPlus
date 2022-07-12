@@ -1,5 +1,7 @@
 package veth.vetheon.survival.data;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -97,9 +99,9 @@ public class Board {
             assert scoreboardManager != null;
             scoreboard = scoreboardManager.getNewScoreboard();
             this.player.setScoreboard(scoreboard);
-            board = scoreboard.registerNewObjective("Board", "dummy", "Board");
+            board = scoreboard.registerNewObjective("Board", "dummy", Component.text("Board"));
             board.setDisplaySlot(DisplaySlot.SIDEBAR);
-            board.setDisplayName(" ");
+            board.displayName(Component.text(" "));
 
             for (int i = 0; i < 15; i++) {
                 lines[i] = scoreboard.registerNewTeam("line" + (i + 1));
@@ -123,8 +125,8 @@ public class Board {
      *
      * @param title Title to set
      */
-    public void setTitle(String title) {
-        board.setDisplayName(getColString(title));
+    public void setTitle(TextComponent title) {
+        board.displayName(title);
     }
 
     /**
@@ -137,7 +139,7 @@ public class Board {
     public void setLine(int line, String text) {
         Validate.isBetween(line, 1, 15);
         Team t = lines[line - 1];
-        t.setPrefix(getColString(text));
+        t.prefix(Component.text(getColString(text)));
         board.getScore(getColString(entries[line - 1])).setScore(line);
     }
 
@@ -188,7 +190,7 @@ public class Board {
     }
 
     private String getColString(String string) {
-        return Utils.getColoredString(string);
+        return Utils.getColoredStringLegacy(string);
     }
 
 }

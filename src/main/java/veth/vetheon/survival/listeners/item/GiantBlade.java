@@ -3,6 +3,7 @@ package veth.vetheon.survival.listeners.item;
 import java.util.Collection;
 import java.util.Random;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -124,7 +125,7 @@ public class GiantBlade implements Listener {
 							}
 							player.updateInventory();
 						} else {
-							player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.charge_unable));
+							player.sendMessage(Utils.getColoredString(lang.charge_unable).color(TextColor.color(0xFF5555)));
 						}
 					}
 				}
@@ -134,7 +135,7 @@ public class GiantBlade implements Listener {
 				else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
 					playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
 				if (playerData.getStat(Stat.DUAL_WIELD_MSG) >= 2) {
-					player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.ender_giant_blade_unable_duel));
+					player.sendMessage(Utils.getColoredString(lang.ender_giant_blade_unable_duel).color(TextColor.color(0xFF5555)));
 				}
 			}
 		} else if (ItemManager.compare(offItem, Item.ENDER_GIANT_BLADE)) {
@@ -144,7 +145,7 @@ public class GiantBlade implements Listener {
 				else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
 					playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
 				if (playerData.getStat(Stat.DUAL_WIELD_MSG) >= 2) {
-					player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.ender_giant_blade_unable_duel));
+					player.sendMessage(Utils.getColoredString(lang.ender_giant_blade_unable_duel).color(TextColor.color(0xFF5555)));
 				}
 			}
 		}
@@ -153,7 +154,7 @@ public class GiantBlade implements Listener {
 
 	private void ChargeForward(Player player) {
 		PlayerData playerData = playerManager.getPlayerData(player);
-		player.sendMessage(ChatColor.BLUE + Utils.getColoredString(lang.charge));
+		player.sendMessage(Utils.getColoredString(lang.charge).color(TextColor.color(0x5555FF)));
 
 		playerData.setStat(Stat.CHARGE, 1);
 
@@ -190,7 +191,7 @@ public class GiantBlade implements Listener {
 
 		Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 			playerData.setStat(Stat.CHARGE, 0);
-			chargingPlayer.sendMessage(ChatColor.GREEN + Utils.getColoredString(lang.charge_ready));
+			chargingPlayer.sendMessage(Utils.getColoredString(lang.charge_ready).color(TextColor.color(0x55FF55)));
 		}, 100L);
 	}
 

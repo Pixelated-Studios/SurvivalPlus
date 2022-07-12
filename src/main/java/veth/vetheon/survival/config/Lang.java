@@ -387,7 +387,7 @@ public class Lang {
         cmd_heal_by = lang.getString("cmd-heal-by");
         cmd_heal_other = lang.getString("cmd-heal-other");
 
-        Utils.sendColoredMsg(sender, prefix + loaded);
+        sender.sendMessage(Utils.getColoredString(prefix + loaded));
     }
 
     // Used to update config

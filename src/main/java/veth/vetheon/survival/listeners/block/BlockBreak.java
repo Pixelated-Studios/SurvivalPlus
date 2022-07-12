@@ -1,5 +1,6 @@
 package veth.vetheon.survival.listeners.block;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -50,7 +51,7 @@ public class BlockBreak implements Listener {
 						if (Utils.requiresShovel(material)) {
 							event.setCancelled(true);
 							player.updateInventory();
-							player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_shovel));
+							player.sendMessage(Utils.getColoredString(lang.task_must_use_shovel).color(TextColor.color(0xff5555)));
 						}
 						//Flint
 						if (material == Material.GRAVEL) {
@@ -81,7 +82,7 @@ public class BlockBreak implements Listener {
 					if (Utils.requiresAxe(material)) {
 						event.setCancelled(true);
 						player.updateInventory();
-						player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_axe));
+						player.sendMessage(Utils.getColoredString(lang.task_must_use_axe).color(TextColor.color(0xFF5555)));
 					}
 
 					//Fix half door glitch
@@ -96,7 +97,7 @@ public class BlockBreak implements Listener {
 					if (Utils.requiresPickaxe(material)) {
 						event.setCancelled(true);
 						player.updateInventory();
-						player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_pick));
+						player.sendMessage(Utils.getColoredString(lang.task_must_use_pick).color(TextColor.color(0xFF5555)));
 					}
 				}
 
@@ -104,7 +105,7 @@ public class BlockBreak implements Listener {
 					if (Utils.isFarmable(material)) {
 						if (!Item.Tags.SICKLES.isTagged(tool)) {
 							event.setCancelled(true);
-							player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_sickle));
+							player.sendMessage(Utils.getColoredString(lang.task_must_use_sickle).color(TextColor.color(0xFF5555)));
 						} else {
 							event.setDropItems(false);
 							Location loc = event.getBlock().getLocation();
@@ -156,7 +157,7 @@ public class BlockBreak implements Listener {
 						if (Utils.requiresShears(material)) {
 							event.setCancelled(true);
 							player.updateInventory();
-							player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_shear));
+							player.sendMessage(Utils.getColoredString(lang.task_must_use_shear).color(TextColor.color(0xFF5555)));
 						}
 					}
 
@@ -203,7 +204,7 @@ public class BlockBreak implements Listener {
 			}
 			if (!Item.Tags.SICKLES.isTagged(tool)) {
 				e.setCancelled(true);
-				player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_sickle));
+				player.sendMessage(Utils.getColoredString(lang.task_must_use_sickle).color(TextColor.color(0xFF5555)));
 			} else {
 				if (bush.getAge() >= 2) {
 					int berries = 0;

@@ -322,7 +322,7 @@ public class PlayerManager implements Listener {
         } else {
             energyBar.insert(0, ChatColor.GOLD);
         }
-        return Arrays.asList(Utils.getColoredString(lang.energy), energyBar.toString());
+        return Arrays.asList(Utils.getColoredStringLegacy(lang.energy), energyBar.toString());
     }
 
     /**

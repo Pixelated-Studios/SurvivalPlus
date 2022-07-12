@@ -157,13 +157,13 @@ public class Status implements CommandExecutor, TabCompleter {
 	}
 
 	private void sendHelp(Player player) {
-        Utils.sendColoredMsg(player, lang.prefix + "&6HealthBoard");
-        Utils.sendColoredMsg(player, "  &b/stat all &7- Show your entire health board");
-        Utils.sendColoredMsg(player, "  &b/stat none &7- Turn off your entire health board");
-        Utils.sendColoredMsg(player, "  &b/stat hunger &7- Turn on/off hunger");
-        Utils.sendColoredMsg(player, "  &b/stat thirst &7- Turn on/off thirst");
-        Utils.sendColoredMsg(player, "  &b/stat energy &7- Turn on/off energy");
-        Utils.sendColoredMsg(player, "  &b/stat nutrients &7- Turn on/off nutrients");
+        player.sendMessage(Utils.getColoredString(lang.prefix + "&6HealthBoard"));
+		player.sendMessage(Utils.getColoredString("  &b/stat all &7- Show your entire health board"));
+		player.sendMessage(Utils.getColoredString("  &b/stat none &7- Turn off your entire health board"));
+		player.sendMessage(Utils.getColoredString("  &b/stat hunger &7- Turn on/off hunger"));
+		player.sendMessage(Utils.getColoredString("  &b/stat thirst &7- Turn on/off thirst"));
+		player.sendMessage(Utils.getColoredString("  &b/stat energy &7- Turn on/off energy"));
+		player.sendMessage(Utils.getColoredString("  &b/stat nutrients &7- Turn on/off nutrients"));
     }
 
 }

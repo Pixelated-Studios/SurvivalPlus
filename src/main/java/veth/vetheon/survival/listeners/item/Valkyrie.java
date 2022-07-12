@@ -3,6 +3,7 @@ package veth.vetheon.survival.listeners.item;
 import java.util.Collection;
 import java.util.Random;
 
+import net.kyori.adventure.text.format.TextColor;
 import veth.vetheon.survival.data.PlayerData;
 import veth.vetheon.survival.data.Stat;
 import veth.vetheon.survival.managers.ItemManager;
@@ -67,7 +68,7 @@ public class Valkyrie implements Listener {
 							}
 							player.updateInventory();
 						} else {
-							player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.lack_of_energy));
+							player.sendMessage(Utils.getColoredString(lang.lack_of_energy).color(TextColor.color(0xFF5555)));
 						}
 					}
 				}
@@ -77,7 +78,7 @@ public class Valkyrie implements Listener {
 				else if (event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK)
 					playerData.setStat(Stat.DUAL_WIELD_MSG, playerData.getStat(Stat.DUAL_WIELD_MSG) + 2);
 				if (playerData.getStat(Stat.DUAL_WIELD_MSG) == 2) {
-					player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.valkyrie_axe_unable_dual));
+					player.sendMessage(Utils.getColoredString(lang.valkyrie_axe_unable_dual).color(TextColor.color(0xFF5555)));
 				}
 			}
 		}
@@ -119,7 +120,7 @@ public class Valkyrie implements Listener {
 							}
 							player.updateInventory();
 						} else {
-							player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.lack_of_energy));
+							player.sendMessage(Utils.getColoredString(lang.lack_of_energy).color(TextColor.color(0xFF5555)));
 						}
 					}
 				}

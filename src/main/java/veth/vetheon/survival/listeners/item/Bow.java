@@ -33,13 +33,13 @@ public class Bow implements Listener {
 				} else {
 					if (mainHand.getType() != Material.CROSSBOW) {
 						event.setCancelled(true);
-						Utils.sendColoredMsg(player, lang.arrows_off_hand);
+						player.sendMessage(Utils.getColoredString(lang.arrows_off_hand));
 						player.updateInventory();
 					}
 				}
 			} else {
 				event.setCancelled(true);
-				Utils.sendColoredMsg(player, lang.bow_main_hand);
+				player.sendMessage(Utils.getColoredString(lang.bow_main_hand));
 				player.updateInventory();
 			}
 		}
@@ -55,12 +55,12 @@ public class Bow implements Listener {
 			if (mainHand.getItemMeta() != null && ((CrossbowMeta) mainHand.getItemMeta()).hasChargedProjectiles()) return;
 			if (!Survival.getInstance().getPlayerManager().isArrowOffHand(player)) {
 				event.setCancelled(true);
-				Utils.sendColoredMsg(player, lang.arrows_off_hand_crossbow);
+				player.sendMessage(Utils.getColoredString(lang.arrows_off_hand_crossbow));
 			}
 		} else if (offHand.getType() == Material.CROSSBOW) {
 			if (event.getHand() == EquipmentSlot.HAND) return;
 			event.setCancelled(true);
-			Utils.sendColoredMsg(player, lang.bow_main_hand);
+			player.sendMessage(Utils.getColoredString(lang.bow_main_hand));
 		}
 	}
 

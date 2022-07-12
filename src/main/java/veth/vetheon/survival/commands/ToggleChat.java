@@ -1,6 +1,6 @@
 package veth.vetheon.survival.commands;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -68,7 +68,7 @@ public class ToggleChat implements CommandExecutor, TabCompleter {
 					playerData.setLocalChat(true);
 				}
 			} else {
-				sender.sendMessage(ChatColor.RED + Utils.getColoredString(lang.invalid_arg));
+				sender.sendMessage(Utils.getColoredString(lang.invalid_arg).color(TextColor.color(0xFF5555)));
 				return false;
 			}
 

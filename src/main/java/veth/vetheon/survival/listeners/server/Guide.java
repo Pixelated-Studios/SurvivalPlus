@@ -38,7 +38,7 @@ public class Guide implements Listener {
             link = link.clickEvent(ClickEvent.clickEvent(ClickEvent.Action.OPEN_URL, lang.survival_guide_link));
             link = link.hoverEvent(HoverEvent.hoverEvent(HoverEvent.Action.SHOW_TEXT, Utils.getColoredString(lang.survival_guide_hover_msg)));
             msg = msg.append(link);
-            playeraud.sendMessage(msg);
+            player.sendMessage(msg);
         }, 20 * delay);
     }
 

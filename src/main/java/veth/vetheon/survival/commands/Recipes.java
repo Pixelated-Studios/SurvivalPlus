@@ -15,8 +15,8 @@ public class Recipes implements CommandExecutor {
 			return true;
 		}
 		Player player = (Player) sender;
-		Utils.sendColoredMsg(player, prefix + "&6Recipes");
-		Utils.sendColoredMsg(player, "  &7Recipes can be found in your crafting guide in your inventory/crafting table");
+		player.sendMessage(Utils.getColoredString(prefix + "&6Recipes"));
+		player.sendMessage(Utils.getColoredString("  &7Recipes can be found in your crafting guide in your inventory/crafting table"));
 		return true;
 	}
 

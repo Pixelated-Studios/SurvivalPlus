@@ -1,5 +1,8 @@
 package veth.vetheon.survival.tasks;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.World.Environment;
@@ -9,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.w3c.dom.Text;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Config;
 import veth.vetheon.survival.config.Lang;
@@ -64,15 +68,15 @@ public class EnergyDrain extends BukkitRunnable {
                 double newLevel = playerData.getEnergy();
                 if (config.MECHANICS_ENERGY_WARNING) {
                     if (targetMatch(10.0, oldLevel, newLevel)) {
-                        Utils.sendColoredMsg(player, lang.energy_level_10);
+                        player.sendMessage(Utils.getColoredString(lang.energy_level_10));
                     } else if (targetMatch(6.5, oldLevel, newLevel)) {
-                        Utils.sendColoredMsg(player, lang.energy_level_6_5);
+                        player.sendMessage(Utils.getColoredString(lang.energy_level_6_5));
                     } else if (targetMatch(3.5, oldLevel, newLevel)) {
-                        Utils.sendColoredMsg(player, lang.energy_level_3_5);
+                        player.sendMessage(Utils.getColoredString(lang.energy_level_3_5));
                     } else if (targetMatch(2, oldLevel, newLevel)) {
-                        Utils.sendColoredMsg(player, lang.energy_level_2);
+                        player.sendMessage(Utils.getColoredString(lang.energy_level_2));
                     } else if (targetMatch(1, oldLevel, newLevel)) {
-                        Utils.sendColoredMsg(player, lang.energy_level_1);
+                        player.sendMessage(Utils.getColoredString(lang.energy_level_1));
                     }
                 }
                 effects(player, playerData);
@@ -154,7 +158,7 @@ public class EnergyDrain extends BukkitRunnable {
         if (!config.MECHANICS_CHAIRS_ENABLED) return false;
         Entity vehicle = player.getVehicle();
         if (vehicle instanceof ArmorStand) {
-            String name = vehicle.getCustomName();
+            String name = PlainTextComponentSerializer.plainText().serialize(vehicle.customName());
             return name != null && name.equalsIgnoreCase("Chair");
 
         }

@@ -31,7 +31,7 @@ public class GiveItem implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        String prefix = Utils.getColoredString(lang.prefix);
+        String prefix = lang.prefix;
         if (args.length < 2) return true;
         Player player = Bukkit.getPlayer(args[0]);
         if (player != null) {
@@ -56,16 +56,16 @@ public class GiveItem implements CommandExecutor, TabCompleter {
                 if (item != null) {
                     String itemName = item.getKey().replace("_", " ");
                     if (sender instanceof Player) {
-                        Utils.sendColoredMsg(sender, prefix + "&6You gave &b" + itemName + " &6to &b" + player.getName());
+                        sender.sendMessage(Utils.getColoredString(prefix + "&6You gave &b" + itemName + " &6to &b" + player.getName()));
                     } else {
-                        Utils.sendColoredMsg(sender, prefix + "&6CONSOLE gave &b" + itemName + " &6to &b" + player.getName());
+                        sender.sendMessage(Utils.getColoredString(prefix + "&6CONSOLE gave &b" + itemName + " &6to &b" + player.getName()));
                     }
                 }
             } catch (IllegalArgumentException ignore) {
-                Utils.sendColoredMsg(sender, prefix + "&b" + args[1] + "&c is not an item");
+                sender.sendMessage(Utils.getColoredString(prefix + "&b" + args[1] + "&c is not an item"));
             }
         } else {
-            Utils.sendColoredMsg(sender, prefix + "&b" + args[0] + " &cis not online");
+            sender.sendMessage(Utils.getColoredString(prefix + "&b" + args[0] + " &cis not online"));
         }
         return true;
     }

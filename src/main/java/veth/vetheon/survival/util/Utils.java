@@ -662,7 +662,6 @@ public class Utils {
         return mat;
     }
 
-	//TODO Fix usages as this now accepts TextComponent instead of String
     /** Send a TextComponent (may be colored) to a Player
      * @param player The player to send a colored TextComponent to
      * @param msg The TextComponent to send including color codes
@@ -703,7 +702,6 @@ public class Utils {
 	    log(String.format(format, objects));
     }
 
-	//TODO Fix usages as this now outputs TextComponent instead of String
     /** Gets a colored string
      * @param string The string including color codes
      * @return Returns a TextComponent object

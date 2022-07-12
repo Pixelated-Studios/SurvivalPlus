@@ -1,5 +1,6 @@
 package veth.vetheon.survival.listeners.block;
 
+import net.kyori.adventure.text.format.TextColor;
 import veth.vetheon.survival.managers.ItemManager;
 import veth.vetheon.survival.item.Item;
 import veth.vetheon.survival.config.Lang;
@@ -48,7 +49,7 @@ public class NoAnvil implements Listener {
 								|| ItemManager.compare(item, Item.HAMMER)) {
 							e.setCancelled(true);
 							e.getWhoClicked().closeInventory();
-							e.getWhoClicked().sendMessage(ChatColor.RED + Utils.getColoredString(lang.no_rename) + item.getItemMeta().getDisplayName() + ChatColor.RED + Utils.getColoredString(lang.period));
+							e.getWhoClicked().sendMessage(Utils.getColoredString(lang.no_rename).append(item.getItemMeta().displayName()).append(Utils.getColoredString(lang.period)).color(TextColor.color(0xFF5555)));
 						}
 					}
 				}

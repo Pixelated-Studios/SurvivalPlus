@@ -1,5 +1,6 @@
 package veth.vetheon.survival.listeners.block;
 
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -67,7 +68,7 @@ public class BlockPlace implements Listener {
 					} else {
 						event.setCancelled(true);
 						player.updateInventory();
-						player.sendMessage(ChatColor.RED + Utils.getColoredString(lang.task_must_use_hammer));
+						player.sendMessage(Utils.getColoredString(lang.task_must_use_hammer).color(TextColor.color(0xFF5555)));
 					}
 				}
 			}

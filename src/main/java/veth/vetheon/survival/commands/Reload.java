@@ -1,5 +1,6 @@
 package veth.vetheon.survival.commands;
 
+import org.bukkit.entity.Player;
 import veth.vetheon.survival.Survival;
 import veth.vetheon.survival.config.Lang;
 import veth.vetheon.survival.util.Utils;
@@ -19,7 +20,7 @@ public class Reload implements CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		plugin.loadSettings(sender);
-		Utils.sendColoredMsg(sender, lang.prefix + "&aReload complete");
+		sender.sendMessage(Utils.getColoredString(lang.prefix + "&aReload complete"));
 		return true;
 	}
 

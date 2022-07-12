@@ -55,12 +55,12 @@ public class SetResourcePack implements Listener {
 		Player player = e.getPlayer();
 		if (config.RESOURCE_PACK_ENABLED && config.RESOURCE_PACK_NOTIFY)
 			if (e.getStatus() == Status.DECLINED) {
-				Utils.sendColoredMsg(player, " ");
-				Utils.sendColoredMsg(player, prefix + "&c" + lang.resource_pack_declined);
-				Utils.sendColoredMsg(player, "   &6" + lang.resource_pack_apply);
-				Utils.sendColoredMsg(player, "   &6" + lang.resource_pack_required);
+				player.sendMessage(Utils.getColoredString(" "));
+				player.sendMessage(Utils.getColoredString(prefix + "&c" + lang.resource_pack_declined));
+				player.sendMessage(Utils.getColoredString("   &6" + lang.resource_pack_apply));
+				player.sendMessage(Utils.getColoredString("   &6" + lang.resource_pack_required));
 			} else if (e.getStatus() == Status.ACCEPTED) {
-				Utils.sendColoredMsg(player, prefix + "&a" + lang.resource_pack_accepted);
+				player.sendMessage(Utils.getColoredString(prefix + "&a" + lang.resource_pack_accepted));
 			}
 	}
 

@@ -81,7 +81,7 @@ public class Consume implements Listener {
 							change = config.MECHANICS_THIRST_REP_HOT_MILK;
 							player.damage(2);
 							player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, 100, 0));
-							Utils.sendColoredMsg(player, lang.hot_milk_drink);
+							player.sendMessage(Utils.getColoredString(lang.hot_milk_drink));
 						} else if (ItemManager.compare(item, Item.WATER_BOWL)) {
 						    event.setCancelled(true);
 						    change = handleWaterBowl(player);

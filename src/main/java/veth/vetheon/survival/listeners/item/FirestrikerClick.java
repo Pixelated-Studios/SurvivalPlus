@@ -1,5 +1,8 @@
 package veth.vetheon.survival.listeners.item;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -161,7 +164,10 @@ public class FirestrikerClick implements Listener {
 
     @EventHandler
     private void onCloseInventory(InventoryCloseEvent event) {
-        if (event.getView().getTitle().equalsIgnoreCase(Utils.getColoredString(lang.firestriker))) {
+        Component name = event.getView().title();
+        String text = PlainTextComponentSerializer.plainText().serialize(name);
+        System.out.println(text);
+        if (text.equals(lang.firestriker)) {
             Inventory inv = event.getInventory();
             if (inv.getHolder() instanceof FireStriker) {
                 ((FireStriker) inv.getHolder()).close();

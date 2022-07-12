@@ -1,5 +1,7 @@
 package veth.vetheon.survival.gui;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -69,11 +71,11 @@ public class NutritionGUI implements InventoryHolder, Listener {
         player.openInventory(inv);
     }
 
-    private ItemStack getButton(Material material, String name) {
+    private ItemStack getButton(Material material, TextComponent name) {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta meta = itemStack.getItemMeta();
         assert meta != null;
-        meta.setDisplayName(Utils.getColoredString(name));
+        meta.displayName(name);
         itemStack.setItemMeta(meta);
         return itemStack;
     }
@@ -83,12 +85,12 @@ public class NutritionGUI implements InventoryHolder, Listener {
         ItemMeta meta = item.getItemMeta();
         assert meta != null;
 
-        List<String> lore = meta.getLore() != null ? meta.getLore() : new ArrayList<>();
-        lore.add(" ");
-        lore.add(Utils.getColoredString("&2" + lang.carbohydrates + ": &7" + nutrition.getCarbs()));
-        lore.add(Utils.getColoredString("&4" + lang.protein + ": &7" + nutrition.getProteins()));
-        lore.add(Utils.getColoredString("&5" + lang.vitamins + ": &7" + nutrition.getVitamins()));
-        meta.setLore(lore);
+        List<Component> lore_list = meta.lore() != null ? meta.lore() : new ArrayList<>();
+        lore_list.add(Component.text(" "));
+        lore_list.add(Utils.getColoredString("&2" + lang.carbohydrates + ": &7" + nutrition.getCarbs()));
+        lore_list.add(Utils.getColoredString("&4" + lang.protein + ": &7" + nutrition.getProteins()));
+        lore_list.add(Utils.getColoredString("&5" + lang.vitamins + ": &7" + nutrition.getVitamins()));
+        meta.lore(lore_list);
 
         item.setItemMeta(meta);
         return item;
