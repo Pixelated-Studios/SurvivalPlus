@@ -159,9 +159,11 @@ public class Chairs implements Listener {
 		if (plugin.getChairBlocks().contains(event.getBlock().getType())) {
 			ArmorStand drop = dropSeat(event.getBlock(), ((Stairs) event.getBlock().getBlockData()));
 			for (Entity e : drop.getNearbyEntities(0.5, 0.5, 0.5)) {
-				String txt = serializer.serialize(e.customName());
-				if (e instanceof ArmorStand && e.customName() != null && txt.equals("Chair"))
-					e.remove();
+				if (e instanceof ArmorStand && e.customName() != null) {
+					String txt = serializer.serialize(e.customName());
+					if (txt.equals("Chair"))
+						e.remove();
+				}
 			}
 
 			drop.remove();
@@ -173,25 +175,31 @@ public class Chairs implements Listener {
 		Entity vehicle = event.getPlayer().getVehicle();
 
 		// Let players stand up when leaving the server.
-		String txt = serializer.serialize(vehicle.customName());
-		if (vehicle instanceof ArmorStand && vehicle.customName() != null && txt.equals("Chair"))
-			vehicle.remove();
+		if (vehicle instanceof ArmorStand && vehicle.customName() != null) {
+			String txt = serializer.serialize(vehicle.customName());
+			if (txt.equals("Chair"))
+				vehicle.remove();
+		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	private void onHit(EntityDamageEvent event) {
 		if (event.isCancelled()) return;
 		Entity hitTarget = event.getEntity();
-		String txtHit = serializer.serialize(hitTarget.customName());
-		if (hitTarget instanceof ArmorStand && hitTarget.customName() != null && txtHit.equals("Chair"))
-			// Chair entity is immune to damage.
-			event.setCancelled(true);
+		if (hitTarget instanceof ArmorStand && hitTarget.customName() != null) {
+			String txtHit = serializer.serialize(hitTarget.customName());
+			if (txtHit.equals("Chair"))
+				// Chair entity is immune to damage.
+				event.setCancelled(true);
+		}
 		else if (hitTarget instanceof Player && hitTarget.getVehicle() != null) {
 			// Let players stand up if receiving damage.
 			Entity vehicle = hitTarget.getVehicle();
-			String txt = serializer.serialize(vehicle.customName());
-			if (vehicle instanceof ArmorStand && vehicle.customName() != null && txt.equals("Chair"))
-				vehicle.remove();
+			if (vehicle instanceof ArmorStand && vehicle.customName() != null) {
+				String txt = serializer.serialize(vehicle.customName());
+				if (txt.equals("Chair"))
+					vehicle.remove();
+			}
 		}
 	}
 
@@ -228,12 +236,14 @@ public class Chairs implements Listener {
 
 		// Check for already existing chair items.
 		for (Entity e : drop.getNearbyEntities(0.5, 0.5, 0.5)) {
-			String txt = serializer.serialize(e.customName());
-			if (e instanceof ArmorStand && e.customName() != null && txt.equals("Chair")) {
-				if (e.getPassengers().isEmpty())
-					e.remove();
-				else
-					drops.add(drop);
+			if (e instanceof ArmorStand && e.customName() != null) {
+				String txt = serializer.serialize(e.customName());
+				if (txt.equals("Chair")) {
+					if (e.getPassengers().isEmpty())
+						e.remove();
+					else
+						drops.add(drop);
+				}
 			}
 		}
 
