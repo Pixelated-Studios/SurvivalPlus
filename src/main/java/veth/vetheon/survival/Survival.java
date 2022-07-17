@@ -12,11 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerLoadEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import veth.vetheon.survival.commands.*;
 import veth.vetheon.survival.config.PlayerDataConfig;
@@ -76,7 +74,7 @@ public class Survival extends PixelatedPlugin implements Listener {
 			String ver = Bukkit.getServer().getBukkitVersion().split("-")[0];
 			Utils.log("&c-----------------------------------------------------------");
 			Utils.log("&cYour version is not supported: &b" + ver);
-			Utils.log("&eThis plugin only works on Minecraft &b1.15+");
+			Utils.log("&eThis plugin only works on Minecraft &b1.17+");
 			Utils.log("&c-----------------------------------------------------------");
 			loaded = false;
 			Bukkit.getPluginManager().disablePlugin(this);
@@ -173,9 +171,8 @@ public class Survival extends PixelatedPlugin implements Listener {
 		}
 
 		// LOAD METRICS
-		int pluginId = 12789;
-		Metrics metrics = new Metrics(this);
-		Utils.log("&7Metrics " + (metrics.isEnabled() ? "&aenabled" : "&cdisabled"));
+		int pluginId = 15812; // <-- Replace with the id of your plugin!
+		Metrics metrics = new Metrics(this, pluginId);
 
 		Utils.log("&aSuccessfully loaded &7in " + (System.currentTimeMillis() - time) + " milliseconds");
 
